@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -130,9 +130,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 347393345}
-  - component: {fileID: 347393348}
   - component: {fileID: 347393347}
+  - component: {fileID: 347393348}
   - component: {fileID: 347393346}
+  - component: {fileID: 347393350}
+  - component: {fileID: 347393349}
   m_Layer: 0
   m_Name: ServerManager
   m_TagString: Untagged
@@ -222,7 +224,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 347393344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Script: {fileID: 11500000, guid: a5085a1df40a72945bf2bb72f2b365ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
@@ -240,9 +242,33 @@ MonoBehaviour:
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 5379897502307438645, guid: c4149673a17d1964fa14ab86ad72699a,
     type: 3}
-  autoCreatePlayer: 1
+  autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs: []
+--- !u!114 &347393349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347393344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 937a956de1a80fc4db8bd8092936708e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &347393350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347393344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 035f897a7b3abc34281d9c6c17824c96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &379434657
 GameObject:
   m_ObjectHideFlags: 0
