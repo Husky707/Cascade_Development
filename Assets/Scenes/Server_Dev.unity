@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 347393348}
   - component: {fileID: 347393346}
   - component: {fileID: 347393350}
+  - component: {fileID: 347393351}
   - component: {fileID: 347393349}
   m_Layer: 0
   m_Name: ServerManager
@@ -232,8 +233,8 @@ MonoBehaviour:
   autoStartServerBuild: 1
   showDebugMessages: 0
   serverTickRate: 30
-  offlineScene: 
-  onlineScene: 
+  offlineScene: Assets/Scenes/TEMP/temp_offlineScene.unity
+  onlineScene: Assets/Scenes/TEMP/temp_onlineScene.unity
   transport: {fileID: 347393347}
   networkAddress: localhost
   maxConnections: 4
@@ -245,6 +246,18 @@ MonoBehaviour:
   autoCreatePlayer: 0
   playerSpawnMethod: 0
   spawnPrefabs: []
+  HubData:
+    _name: Cascade Hub
+    _type: 1
+    _roomSetup:
+      _sceneToLoad: 2
+      _timeToCloseRoom: 0
+      _exitAnimation: {fileID: 0}
+      _entryAnimation: {fileID: 0}
+    _occupancySettings:
+      _maxObservers: 12
+      _maxActors: 0
+      _maxSpectators: 0
 --- !u!114 &347393349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,9 +267,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 347393344}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 937a956de1a80fc4db8bd8092936708e, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneId: 2598606834
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!114 &347393350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,6 +286,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 035f897a7b3abc34281d9c6c17824c96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  LogRequests: 0
+--- !u!114 &347393351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 347393344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112dcd95a05b9c74483a77862597c0ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!1 &379434657
 GameObject:
   m_ObjectHideFlags: 0

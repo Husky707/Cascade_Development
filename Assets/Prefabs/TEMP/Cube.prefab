@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 9170239290565068691}
   - component: {fileID: 5240759819555823874}
   - component: {fileID: 7171453447676876694}
+  - component: {fileID: 8683656613163638358}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -139,6 +140,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06f09eabe0e056945b34916e69953499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!114 &7171453447676876694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -151,3 +154,65 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c73f953b70fdb54eb4162561291b091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+--- !u!114 &8683656613163638358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5379897502307438645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d70cd645e669e57448644e739ec0dc75, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentRoom:
+    _name: 
+    _type: 0
+    _roomSetup:
+      _sceneToLoad: 2
+      _timeToCloseRoom: 5
+      _exitAnimation: {fileID: 0}
+      _entryAnimation: {fileID: 0}
+    _occupancySettings:
+      _maxObservers: 0
+      _maxActors: 0
+      _maxSpectators: 0
+  defaultRoom:
+    _name: Cascade Hub
+    _type: 1
+    _roomSetup:
+      _sceneToLoad: 2
+      _timeToCloseRoom: 0
+      _exitAnimation: {fileID: 0}
+      _entryAnimation: {fileID: 0}
+    _occupancySettings:
+      _maxObservers: 0
+      _maxActors: 0
+      _maxSpectators: 0
+  alphaGameRoom:
+    _name: Alpha Game Room
+    _type: 3
+    _roomSetup:
+      _sceneToLoad: 5
+      _timeToCloseRoom: 0
+      _exitAnimation: {fileID: 0}
+      _entryAnimation: {fileID: 0}
+    _occupancySettings:
+      _maxObservers: 0
+      _maxActors: 0
+      _maxSpectators: 0
+  alphaLobbyRoom:
+    _name: Lobby
+    _type: 2
+    _roomSetup:
+      _sceneToLoad: 4
+      _timeToCloseRoom: 0
+      _exitAnimation: {fileID: 0}
+      _entryAnimation: {fileID: 0}
+    _occupancySettings:
+      _maxObservers: 0
+      _maxActors: 0
+      _maxSpectators: 0

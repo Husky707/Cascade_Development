@@ -5,16 +5,16 @@ using Mirror;
 
 public class ClientMessenger : NetworkBehaviour
 {
-
-    public IReceiveOnServer ServerLink { get { if (!isServer) return null; return _serverLink; } }
-    private IReceiveOnServer _serverLink = null;
+    public bool showDebug = false;
+    public IReceiveClientCommands ServerLink { get { if (!isServer) return null; return _serverLink; } }
+    private IReceiveClientCommands _serverLink = null;
 
 
     ///////////////////////////////////////////////////
     ///Init
-    
+
     [Server]
-    public void LinkClientMessengerToServerReceiver(IReceiveOnServer netComm)
+    public void LinkClientMessengerToServerReceiver(IReceiveClientCommands netComm)
     {
         if (netComm == null)
         {
@@ -25,17 +25,36 @@ public class ClientMessenger : NetworkBehaviour
         _serverLink = netComm;
     }
 
+    [Server]
+    public void DisconnectClinetMessengerFromServerReceiver()
+    {
+        _serverLink = null;
+    }
+
     ///////////////////////////////////////////////////
-    #region Client Methods Commands
+    #region Clientside Methods
 
     [Client]
     public void RequestPlay()
     {
         //TODO add param of play type
-        Debug.Log("Client is sending a play request");
+        if(showDebug) Debug.Log("Client is sending a play request");
         CMD_RequestPlay();
     }
 
+    [Client]
+    public void RequestQuit()
+    {
+        if(showDebug) Debug.Log("Client is sending a quit request");
+        CMD_RequestQuit();
+    }
+
+    [Client]
+    public void RequestPlacement(uint xx, uint yy)
+    {
+        if (showDebug) Debug.Log("Client is sending a placement request");
+        CMD_RequestPlacement(xx, yy);
+    }
 
     #endregion
 
@@ -45,9 +64,21 @@ public class ClientMessenger : NetworkBehaviour
     [Command]
     private void CMD_RequestPlay()
     {
-        ServerLink.RequestPlay(this.netIdentity);
+        ServerLink.RequestPlay(this.netIdentity, eGameTypes.Alpha);
     }
 
+
+    [Command]
+    private void CMD_RequestQuit()
+    {
+        ServerLink.RequestQuitApplication(this.netIdentity);
+    }
+
+    [Command]
+    private void CMD_RequestPlacement(uint xx, uint yy)
+    {
+        ServerLink.RequestPlacement(this.netIdentity, xx, yy);
+    }
 
     #endregion
 

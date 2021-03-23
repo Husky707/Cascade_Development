@@ -9,11 +9,15 @@ public class ServerManager : NetworkManager
 {
 
     ///////////////////////////////////////////////////
-
     private ServerReceiver _receiver = null;
     private ServerMessenger _messenger = null;
 
+    private HubRoom _hub = null;
+    [Header("Hub Settings")]
+    [SerializeField] NetworkRoomData HubData;
 
+    ///////////////////////////////////////////////////
+    #region Init
     public override void Awake()
     {
         base.Awake();
@@ -31,14 +35,17 @@ public class ServerManager : NetworkManager
         _messenger.enabled = false;
     }
 
-    ///////////////////////////////////////////////////
     public override void OnStartServer()
     {
         base.OnStartServer();
 
-        //Create ServerHub
+        SetupHub();
     }
 
+    #endregion
+
+    ///////////////////////////////////////////////////
+    #region Handle Connections
     public override void OnServerConnect(NetworkConnection conn)
     {
         base.OnServerConnect(conn);
@@ -48,21 +55,13 @@ public class ServerManager : NetworkManager
         NetworkServer.AddPlayerForConnection(conn, newPlayer);
 
         //Add player to Hub
-        //Register Client
-        Debug.Log("Attempting registry.");
-        ClientManager client = newPlayer.GetComponent<ClientManager>();
-        if(client == null )
-        {
-            Debug.Log("Registry attempt failed. No ClientManager found on player prefab.");
-        }
-        else
-            client.Messenger.LinkClientMessengerToServerReceiver(_receiver);
-    }
+        _hub.AddObserver(conn);
 
+    }
 
     public override void OnServerAddPlayer(NetworkConnection conn)
     {
-        //Remove default implementation.
+        //Removes default implementation.
         //base.OnServerAddPlayer(conn);
     }
 
@@ -75,4 +74,29 @@ public class ServerManager : NetworkManager
         return newPlayer;
     }
 
+
+    public override void OnServerDisconnect(NetworkConnection conn)
+    {
+        base.OnServerDisconnect(conn);
+
+        _hub.OnObserverDisconnected(conn);
+
+    }
+
+    #endregion
+
+
+    ///////////////////////////////////////////////////
+    #region Setup Server Hub
+
+    void SetupHub()
+    {
+        maxConnections = (int)HubData.OccupancySetting.MaxObservers;
+        _hub = new HubRoom(0, HubData, _messenger, _receiver);
+
+        Debug.Log("Server hub ready!");
+    }
+
+
+    #endregion
 }
